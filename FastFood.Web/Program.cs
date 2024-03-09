@@ -1,3 +1,6 @@
+using FastFood.Repository;
+using Microsoft.EntityFrameworkCore;
+
 namespace FastFood.Web
 {
     public class Program
@@ -8,6 +11,8 @@ namespace FastFood.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext < ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefauleConnections")));
 
             var app = builder.Build();
 
